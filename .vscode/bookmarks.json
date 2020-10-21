@@ -1,0 +1,12 @@
+[
+	{
+		"path": "$ROOTPATH$\\Core\\Src\\main.c",
+		"bookmarks": [
+			{
+				"line": 218,
+				"column": 53,
+				"label": "write flash"
+			}
+		]
+	}
+]
