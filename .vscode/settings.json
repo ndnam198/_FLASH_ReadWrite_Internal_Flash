@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "xlocale": "c"
+        "xlocale": "c",
+        "vector": "c",
+        "xstring": "c",
+        "xutility": "c"
     }
 }

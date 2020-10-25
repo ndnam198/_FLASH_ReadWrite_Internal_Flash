@@ -30,24 +30,24 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-FLASH_Read_Write.elf \
+[FLASH]ReadWrite_internal_flash.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-FLASH_Read_Write.list \
+[FLASH]ReadWrite_internal_flash.list \
 
 OBJCOPY_BIN += \
-FLASH_Read_Write.bin \
+[FLASH]ReadWrite_internal_flash.bin \
 
 
 # All Target
-all: FLASH_Read_Write.elf secondary-outputs
+all: [FLASH]ReadWrite_internal_flash.elf secondary-outputs
 
 # Tool invocations
-FLASH_Read_Write.elf: $(OBJS) $(USER_OBJS) D:\Document\Software\STM32CubeIDE_workspace\FLASH_Read_Write\STM32F103C8TX_FLASH.ld
-	arm-none-eabi-gcc -o "FLASH_Read_Write.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Document\Software\STM32CubeIDE_workspace\FLASH_Read_Write\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FLASH_Read_Write.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+[FLASH]ReadWrite_internal_flash.elf: $(OBJS) $(USER_OBJS) D:\Document\Software\STM32CubeIDE_workspace\[FLASH]ReadWrite_internal_flash\STM32F103C8TX_FLASH.ld
+	arm-none-eabi-gcc -o "[FLASH]ReadWrite_internal_flash.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Document\Software\STM32CubeIDE_workspace\[FLASH]ReadWrite_internal_flash\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="[FLASH]ReadWrite_internal_flash.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -56,13 +56,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-FLASH_Read_Write.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "FLASH_Read_Write.list"
+[FLASH]ReadWrite_internal_flash.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "[FLASH]ReadWrite_internal_flash.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-FLASH_Read_Write.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "FLASH_Read_Write.bin"
+[FLASH]ReadWrite_internal_flash.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "[FLASH]ReadWrite_internal_flash.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 

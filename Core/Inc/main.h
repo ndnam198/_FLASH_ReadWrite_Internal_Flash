@@ -58,7 +58,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define PRINT_DEBUG
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
