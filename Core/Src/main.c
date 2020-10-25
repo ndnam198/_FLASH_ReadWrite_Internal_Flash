@@ -63,62 +63,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void write_flash(uint32_t start_address, uint32_t end_address)
-{
-  HAL_StatusTypeDef status = HAL_ERROR;
-  uint32_t error_count = 0;
-
-  HAL_FLASH_Unlock();
-
-  FLASH_EraseInitTypeDef EraseInitStruck;
-  EraseInitStruck.TypeErase = FLASH_TYPEERASE_PAGES;
-  // EraseInitStruck.Banks       = ;
-  EraseInitStruck.PageAddress = start_address;
-  EraseInitStruck.NbPages = (end_address - start_address) / FLASH_PAGE_SIZE;
-  uint32_t PageError = 0xFFFFFFFF;
-
-  status = HAL_FLASHEx_Erase(&EraseInitStruck, &PageError);
-  if (status != HAL_OK)
-  {
-    ++error_count;
-    print("Flash Erase failed\r\n");
-    print(__FILE__);
-    print(__LINE__);
-    print("\r\n");
-  }
-
-  status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, start_address, 22);
-  if (status != HAL_OK)
-  {
-    ++error_count;
-  }
-  status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, start_address + 4, 12);
-  if (status != HAL_OK)
-  {
-    ++error_count;
-  }
-  status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, start_address + 8, 1998);
-  if (status != HAL_OK)
-  {
-    ++error_count;
-  }
-  if (error_count != 0)
-  {
-    print("Write Flash failed\r\n");
-  }
-
-  if (error_count == 0)
-  {
-    print("Write Flash success\r\n");
-  }
-  HAL_FLASH_Lock();
-}
-
-uint32_t read_flash(uint32_t flash_address)
-{
-  uint32_t data = *(volatile uint32_t *)(flash_address);
-  return data;
-}
 /* USER CODE END 0 */
 
 /**
@@ -176,8 +120,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-      toggleLed4;
-      HAL_Delay(1000);
+    toggleLed4;
+    HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
